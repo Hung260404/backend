@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model GIANGVIEN {
+  MaGV         String         @id @db.VarChar(10)
+  HoTen        String         @db.VarChar(100)
+  TrinhDo      String?        @db.VarChar(50)
+  BoMon        String?        @db.VarChar(100)
+  TAIKHOAN     TAIKHOAN[]
+  THOIKHOABIEU THOIKHOABIEU[]
+}
+
+model LOP {
+  MaLop        String         @id @db.VarChar(10)
+  TenLop       String         @db.VarChar(100)
+  KhoaHoc      String?        @db.VarChar(20)
+  NganhHoc     String?        @db.VarChar(100)
+  SINHVIEN     SINHVIEN[]
+  THOIKHOABIEU THOIKHOABIEU[]
+}
+
+model MONHOC {
+  MaMH         String         @id @db.VarChar(10)
+  TenMH        String         @db.VarChar(100)
+  SoTinChi     Int?
+  SoTiet       Int?
+  THOIKHOABIEU THOIKHOABIEU[]
+}
+
+model PHONG {
+  MaPhong      String         @id @db.VarChar(10)
+  TenPhong     String?        @db.VarChar(50)
+  SucChua      Int?
+  LoaiPhong    String?        @db.VarChar(50)
+  THOIKHOABIEU THOIKHOABIEU[]
+}
+
+model SINHVIEN {
+  MaSV     String             @id @db.VarChar(10)
+  HoTen    String             @db.VarChar(100)
+  NgaySinh DateTime?          @db.Date
+  GioiTinh SINHVIEN_GioiTinh?
+  DiaChi   String?            @db.VarChar(200)
+  MaLop    String?            @db.VarChar(10)
+  LOP      LOP?               @relation(fields: [MaLop], references: [MaLop], onDelete: NoAction, onUpdate: NoAction, map: "SINHVIEN_ibfk_1")
+  TAIKHOAN TAIKHOAN[]
+
+  @@index([MaLop], map: "MaLop")
+}
+
+model TAIKHOAN {
+  TenDangNhap  String                 @id @db.VarChar(50)
+  MatKhau      String                 @db.VarChar(255)
+  LoaiTaiKhoan TAIKHOAN_LoaiTaiKhoan? @default(SinhVien)
+  MaSV         String?                @db.VarChar(10)
+  MaGV         String?                @db.VarChar(10)
+  SINHVIEN     SINHVIEN?              @relation(fields: [MaSV], references: [MaSV], onDelete: NoAction, onUpdate: NoAction, map: "TAIKHOAN_ibfk_1")
+  GIANGVIEN    GIANGVIEN?             @relation(fields: [MaGV], references: [MaGV], onDelete: NoAction, onUpdate: NoAction, map: "TAIKHOAN_ibfk_2")
+
+  @@index([MaGV], map: "MaGV")
+  @@index([MaSV], map: "MaSV")
+}
+
+model THOIKHOABIEU {
+  MaTKB       Int        @id @default(autoincrement())
+  MaLop       String?    @db.VarChar(10)
+  MaMH        String?    @db.VarChar(10)
+  MaGV        String?    @db.VarChar(10)
+  MaPhong     String?    @db.VarChar(10)
+  Thu         Int?
+  TietBatDau  Int?
+  SoTiet      Int?
+  NgayBatDau  DateTime?  @db.Date
+  NgayKetThuc DateTime?  @db.Date
+  LOP         LOP?       @relation(fields: [MaLop], references: [MaLop], onDelete: NoAction, onUpdate: NoAction, map: "THOIKHOABIEU_ibfk_1")
+  MONHOC      MONHOC?    @relation(fields: [MaMH], references: [MaMH], onDelete: NoAction, onUpdate: NoAction, map: "THOIKHOABIEU_ibfk_2")
+  GIANGVIEN   GIANGVIEN? @relation(fields: [MaGV], references: [MaGV], onDelete: NoAction, onUpdate: NoAction, map: "THOIKHOABIEU_ibfk_3")
+  PHONG       PHONG?     @relation(fields: [MaPhong], references: [MaPhong], onDelete: NoAction, onUpdate: NoAction, map: "THOIKHOABIEU_ibfk_4")
+
+  @@index([MaGV], map: "MaGV")
+  @@index([MaLop], map: "MaLop")
+  @@index([MaMH], map: "MaMH")
+  @@index([MaPhong], map: "MaPhong")
+}
+
+enum TAIKHOAN_LoaiTaiKhoan {
+  SinhVien
+  GiangVien
+  Admin
+}
+
+enum SINHVIEN_GioiTinh {
+  Nam
+  N_  @map("Nữ")
+}
