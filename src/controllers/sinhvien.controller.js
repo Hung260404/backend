@@ -1,9 +1,9 @@
-import giangvienService from "../services/giangvien.service.js";
+import sinhvienService from "../services/sinhvien.service.js";
 
-const giangvienController = {
+const sinhvienController = {
   getAll: async (req, res, next) => {
     try {
-      const data = await giangvienService.getAll();
+      const data = await sinhvienService.getAll();
       res.json({ success: true, data });
     } catch (err) {
       next(err);
@@ -12,7 +12,7 @@ const giangvienController = {
 
   getById: async (req, res, next) => {
     try {
-      const data = await giangvienService.getById(req.params.id);
+      const data = await sinhvienService.getById(req.params.id);
       res.json({ success: true, data });
     } catch (err) {
       next(err);
@@ -21,7 +21,7 @@ const giangvienController = {
 
   create: async (req, res, next) => {
     try {
-      const data = await giangvienService.create(req.body);
+      const data = await sinhvienService.create(req.body);
       res.status(201).json({ success: true, data });
     } catch (err) {
       next(err);
@@ -30,7 +30,7 @@ const giangvienController = {
 
   update: async (req, res, next) => {
     try {
-      const data = await giangvienService.update(req.params.id, req.body);
+      const data = await sinhvienService.update(req.params.id, req.body);
       res.json({ success: true, data });
     } catch (err) {
       next(err);
@@ -39,12 +39,22 @@ const giangvienController = {
 
   remove: async (req, res, next) => {
     try {
-      await giangvienService.remove(req.params.id);
+      await sinhvienService.remove(req.params.id);
       res.json({ success: true });
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  getByClass: async (req, res, next) => {
+    try {
+      const { classId } = req.params;
+      const data = await sinhvienService.findByClass(classId);
+      res.json({ success: true, data });
     } catch (err) {
       next(err);
     }
   },
 };
 
-export default giangvienController;
+export default sinhvienController;

@@ -1,9 +1,9 @@
-import giangvienService from "../services/giangvien.service.js";
+import lopService from "../services/lop.service.js";
 
-const giangvienController = {
+const lopController = {
   getAll: async (req, res, next) => {
     try {
-      const data = await giangvienService.getAll();
+      const data = await lopService.getAll();
       res.json({ success: true, data });
     } catch (err) {
       next(err);
@@ -12,7 +12,8 @@ const giangvienController = {
 
   getById: async (req, res, next) => {
     try {
-      const data = await giangvienService.getById(req.params.id);
+      const { id } = req.params;
+      const data = await lopService.getById(id);
       res.json({ success: true, data });
     } catch (err) {
       next(err);
@@ -21,7 +22,7 @@ const giangvienController = {
 
   create: async (req, res, next) => {
     try {
-      const data = await giangvienService.create(req.body);
+      const data = await lopService.create(req.body);
       res.status(201).json({ success: true, data });
     } catch (err) {
       next(err);
@@ -30,7 +31,8 @@ const giangvienController = {
 
   update: async (req, res, next) => {
     try {
-      const data = await giangvienService.update(req.params.id, req.body);
+      const { id } = req.params;
+      const data = await lopService.update(id, req.body);
       res.json({ success: true, data });
     } catch (err) {
       next(err);
@@ -39,12 +41,13 @@ const giangvienController = {
 
   remove: async (req, res, next) => {
     try {
-      await giangvienService.remove(req.params.id);
-      res.json({ success: true });
+      const { id } = req.params;
+      await lopService.remove(id);
+      res.json({ success: true, message: "Đã xóa" });
     } catch (err) {
       next(err);
     }
   },
 };
 
-export default giangvienController;
+export default lopController;

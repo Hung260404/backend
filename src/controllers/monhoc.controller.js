@@ -1,45 +1,41 @@
-import giangvienService from "../services/giangvien.service.js";
+import monhocService from "../services/monhoc.service.js";
 
-const giangvienController = {
+const monhocController = {
   getAll: async (req, res, next) => {
     try {
-      const data = await giangvienService.getAll();
+      const data = await monhocService.getAll();
       res.json({ success: true, data });
     } catch (err) {
       next(err);
     }
   },
-
   getById: async (req, res, next) => {
     try {
-      const data = await giangvienService.getById(req.params.id);
+      const data = await monhocService.getById(req.params.id);
       res.json({ success: true, data });
     } catch (err) {
       next(err);
     }
   },
-
   create: async (req, res, next) => {
     try {
-      const data = await giangvienService.create(req.body);
+      const data = await monhocService.create(req.body);
       res.status(201).json({ success: true, data });
     } catch (err) {
       next(err);
     }
   },
-
   update: async (req, res, next) => {
     try {
-      const data = await giangvienService.update(req.params.id, req.body);
+      const data = await monhocService.update(req.params.id, req.body);
       res.json({ success: true, data });
     } catch (err) {
       next(err);
     }
   },
-
   remove: async (req, res, next) => {
     try {
-      await giangvienService.remove(req.params.id);
+      await monhocService.remove(req.params.id);
       res.json({ success: true });
     } catch (err) {
       next(err);
@@ -47,4 +43,4 @@ const giangvienController = {
   },
 };
 
-export default giangvienController;
+export default monhocController;
