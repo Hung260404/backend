@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import prisma from "../prismaClient.js";
+import prisma from "../common/prisma/init.prisma";
 
 const JWT_SECRET = process.env.JWT_SECRET || "secret_key";
 const REFRESH_SECRET = process.env.REFRESH_SECRET || "refresh_secret";
