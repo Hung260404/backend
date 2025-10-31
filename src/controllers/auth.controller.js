@@ -1,38 +1,28 @@
 import authService from "../services/auth.service.js";
 
 const authController = {
+  // --- Đăng ký ---
   register: async (req, res) => {
     try {
       const result = await authService.register(req.body);
-      res
-        .status(201)
-        .json({ success: true, message: "Đăng ký thành công", data: result });
+      res.status(201).json({ success: true, data: result });
     } catch (err) {
       res.status(400).json({ success: false, message: err.message });
     }
   },
 
+  // --- Đăng nhập ---
   login: async (req, res) => {
     try {
       const { TenDangNhap, MatKhau } = req.body;
-
       const result = await authService.login(TenDangNhap, MatKhau);
-      if (!result) {
-        return res
-          .status(401)
-          .json({ success: false, message: "Tên đăng nhập hoặc mật khẩu sai" });
-      }
-
-      res.json({
-        success: true,
-        message: "Đăng nhập thành công",
-        data: result,
-      });
+      res.json({ success: true, data: result });
     } catch (err) {
       res.status(401).json({ success: false, message: err.message });
     }
   },
 
+  // --- Làm mới token ---
   refreshToken: async (req, res) => {
     try {
       const { refreshToken } = req.body;
