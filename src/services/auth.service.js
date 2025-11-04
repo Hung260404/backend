@@ -5,7 +5,7 @@ import prisma from "../common/prisma/init.prisma.js";
 dotenv.config();
 
 const authService = {
-  // --- Đăng ký tài khoản ---
+  //  Đăng ký tài khoản
   register: async (data) => {
     const {
       TenDangNhap,
@@ -25,7 +25,7 @@ const authService = {
 
     if (existing) throw new Error("Tên đăng nhập đã tồn tại");
 
-    // tạo tài khoản (không mã hóa mật khẩu)
+    // tạo tài khoản
     const created = await prisma.tAIKHOAN.create({
       data: {
         TenDangNhap,
@@ -67,7 +67,7 @@ const authService = {
     };
   },
 
-  // --- Đăng nhập ---
+  // Đăng nhập
   login: async (TenDangNhap, MatKhau) => {
     const account = await prisma.tAIKHOAN.findUnique({
       where: { TenDangNhap },
@@ -118,7 +118,7 @@ const authService = {
     };
   },
 
-  // --- Làm mới Access Token ---
+  // Làm mới Access Token
   refreshAccessToken: async (refreshToken) => {
     if (!refreshToken) throw new Error("Thiếu refresh token");
 

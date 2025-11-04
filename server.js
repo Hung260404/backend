@@ -1,3 +1,4 @@
+import cors from "cors"; // <- import cors
 import dotenv from "dotenv";
 import express from "express";
 import { errorHandler } from "./src/middlewares/error.middleware.js";
@@ -7,6 +8,15 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+
+// --- Thêm CORS để cho phép tất cả origin ---
+app.use(
+  cors({
+    origin: "*", // <- cho phép tất cả frontend
+    credentials: true, // nếu gửi cookie hoặc authorization header
+  })
+);
+// --- CORS xong ---
 
 // mount API
 app.use("/api", rootRouter);
