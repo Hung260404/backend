@@ -8,95 +8,149 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model GIANGVIEN {
-  MaGV         String         @id @db.VarChar(10)
-  HoTen        String         @db.VarChar(100)
-  TrinhDo      String?        @db.VarChar(50)
-  BoMon        String?        @db.VarChar(100)
-  TAIKHOAN     TAIKHOAN[]
-  THOIKHOABIEU THOIKHOABIEU[]
+
+model categories {
+  id       Int     @id @default(autoincrement())
+  name     String  @db.VarChar(255)
+  icon_url String? @db.VarChar(500)
 }
 
-model LOP {
-  MaLop        String         @id @db.VarChar(10)
-  TenLop       String         @db.VarChar(100)
-  KhoaHoc      String?        @db.VarChar(20)
-  NganhHoc     String?        @db.VarChar(100)
-  SINHVIEN     SINHVIEN[]
-  THOIKHOABIEU THOIKHOABIEU[]
+model conversations {
+  id           Int        @id @default(autoincrement())
+  customer_id  Int
+  provider_id  Int
+  last_message String?    @db.Text
+  updated_at   DateTime?  @default(now()) @db.Timestamp(0)
+  users        users      @relation(fields: [customer_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "conversations_ibfk_1")
+  providers    providers  @relation(fields: [provider_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "conversations_ibfk_2")
+  messages     messages[]
+
+  @@index([customer_id], map: "customer_id")
+  @@index([provider_id], map: "provider_id")
 }
 
-model MONHOC {
-  MaMH         String         @id @db.VarChar(10)
-  TenMH        String         @db.VarChar(100)
-  SoTinChi     Int?
-  SoTiet       Int?
-  THOIKHOABIEU THOIKHOABIEU[]
+model messages {
+  id              Int           @id @default(autoincrement())
+  conversation_id Int
+  sender_id       Int
+  content         String?       @db.Text
+  is_read         Boolean?      @default(false)
+  conversations   conversations @relation(fields: [conversation_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "messages_ibfk_1")
+  users           users         @relation(fields: [sender_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "messages_ibfk_2")
+
+  @@index([conversation_id], map: "conversation_id")
+  @@index([sender_id], map: "sender_id")
 }
 
-model PHONG {
-  MaPhong      String         @id @db.VarChar(10)
-  TenPhong     String?        @db.VarChar(50)
-  SucChua      Int?
-  LoaiPhong    String?        @db.VarChar(50)
-  THOIKHOABIEU THOIKHOABIEU[]
+model notifications {
+  id      Int                 @id @default(autoincrement())
+  user_id Int
+  title   String?             @db.VarChar(255)
+  message String?             @db.Text
+  type    notifications_type? @default(SYSTEM)
+  is_read Boolean?            @default(false)
+  users   users               @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "notifications_ibfk_1")
+
+  @@index([user_id], map: "user_id")
 }
 
-model SINHVIEN {
-  MaSV     String             @id @db.VarChar(10)
-  HoTen    String             @db.VarChar(100)
-  NgaySinh DateTime?          @db.Date
-  GioiTinh SINHVIEN_GioiTinh?
-  DiaChi   String?            @db.VarChar(200)
-  MaLop    String?            @db.VarChar(10)
-  LOP      LOP?               @relation(fields: [MaLop], references: [MaLop], onDelete: NoAction, onUpdate: NoAction, map: "SINHVIEN_ibfk_1")
-  TAIKHOAN TAIKHOAN[]
+model payout_requests {
+  id          Int                     @id @default(autoincrement())
+  provider_id Int
+  amount      Decimal                 @db.Decimal(12, 2)
+  bank_info   Json?
+  status      payout_requests_status? @default(PENDING)
+  providers   providers               @relation(fields: [provider_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "payout_requests_ibfk_1")
 
-  @@index([MaLop], map: "MaLop")
+  @@index([provider_id], map: "provider_id")
 }
 
-model TAIKHOAN {
-  TenDangNhap  String                 @id @db.VarChar(50)
-  MatKhau      String                 @db.VarChar(255)
-  LoaiTaiKhoan TAIKHOAN_LoaiTaiKhoan? @default(SinhVien)
-  MaSV         String?                @db.VarChar(10)
-  MaGV         String?                @db.VarChar(10)
-  SINHVIEN     SINHVIEN?              @relation(fields: [MaSV], references: [MaSV], onDelete: NoAction, onUpdate: NoAction, map: "TAIKHOAN_ibfk_1")
-  GIANGVIEN    GIANGVIEN?             @relation(fields: [MaGV], references: [MaGV], onDelete: NoAction, onUpdate: NoAction, map: "TAIKHOAN_ibfk_2")
-
-  @@index([MaGV], map: "MaGV")
-  @@index([MaSV], map: "MaSV")
+model providers {
+  user_id         Int                   @id
+  business_name   String?               @db.VarChar(255)
+  description     String?               @db.Text
+  address         String?               @db.VarChar(500)
+  latitude        Decimal?              @db.Decimal(10, 7)
+  longitude       Decimal?              @db.Decimal(10, 7)
+  kyc_status      providers_kyc_status? @default(PENDING)
+  trust_score     Decimal?              @default(0.00) @db.Decimal(3, 2)
+  conversations   conversations[]
+  payout_requests payout_requests[]
+  users           users                 @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "providers_ibfk_1")
+  schedules       schedules[]
+  wallets         wallets?
 }
 
-model THOIKHOABIEU {
-  MaTKB       Int        @id @default(autoincrement())
-  MaLop       String?    @db.VarChar(10)
-  MaMH        String?    @db.VarChar(10)
-  MaGV        String?    @db.VarChar(10)
-  MaPhong     String?    @db.VarChar(10)
-  Thu         Int?
-  TietBatDau  Int?
-  SoTiet      Int?
-  NgayBatDau  DateTime?  @db.Date
-  NgayKetThuc DateTime?  @db.Date
-  LOP         LOP?       @relation(fields: [MaLop], references: [MaLop], onDelete: NoAction, onUpdate: NoAction, map: "THOIKHOABIEU_ibfk_1")
-  MONHOC      MONHOC?    @relation(fields: [MaMH], references: [MaMH], onDelete: NoAction, onUpdate: NoAction, map: "THOIKHOABIEU_ibfk_2")
-  GIANGVIEN   GIANGVIEN? @relation(fields: [MaGV], references: [MaGV], onDelete: NoAction, onUpdate: NoAction, map: "THOIKHOABIEU_ibfk_3")
-  PHONG       PHONG?     @relation(fields: [MaPhong], references: [MaPhong], onDelete: NoAction, onUpdate: NoAction, map: "THOIKHOABIEU_ibfk_4")
+model schedules {
+  id          Int       @id @default(autoincrement())
+  provider_id Int
+  day_of_week Int       @db.TinyInt
+  start_time  DateTime  @db.Time(0)
+  end_time    DateTime  @db.Time(0)
+  is_day_off  Boolean?  @default(false)
+  providers   providers @relation(fields: [provider_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "schedules_ibfk_1")
 
-  @@index([MaGV], map: "MaGV")
-  @@index([MaLop], map: "MaLop")
-  @@index([MaMH], map: "MaMH")
-  @@index([MaPhong], map: "MaPhong")
+  @@index([provider_id], map: "provider_id")
 }
 
-enum TAIKHOAN_LoaiTaiKhoan {
-  SinhVien
-  GiangVien
-  Admin
+model users {
+  id            Int             @id @default(autoincrement())
+  email         String          @unique(map: "email") @db.VarChar(255)
+  password      String          @db.VarChar(255)
+  full_name     String          @db.VarChar(255)
+  phone         String?         @db.VarChar(20)
+  avatar_url    String?         @db.VarChar(500)
+  role          users_role?     @default(CUSTOMER)
+  is_active     Boolean?        @default(true)
+  created_at    DateTime?       @default(now()) @db.Timestamp(0)
+  conversations conversations[]
+  messages      messages[]
+  notifications notifications[]
+  providers     providers?
 }
 
-enum SINHVIEN_GioiTinh {
-  Nam
-  N_  @map("Nữ")
+model vouchers {
+  id              Int                    @id @default(autoincrement())
+  code            String                 @unique(map: "code") @db.VarChar(50)
+  discount_type   vouchers_discount_type
+  value           Decimal                @db.Decimal(12, 2)
+  min_order_price Decimal?               @default(0.00) @db.Decimal(12, 2)
+  owner_id        Int?
+}
+
+model wallets {
+  provider_id     Int       @id
+  balance         Decimal?  @default(0.00) @db.Decimal(12, 2)
+  holding_balance Decimal?  @default(0.00) @db.Decimal(12, 2)
+  providers       providers @relation(fields: [provider_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "wallets_ibfk_1")
+}
+
+
+enum vouchers_discount_type {
+  PERCENT
+  FIXED
+}
+
+enum payout_requests_status {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum notifications_type {
+  BOOKING
+  SYSTEM
+  PROMOTION
+}
+
+enum users_role {
+  CUSTOMER
+  PROVIDER
+  ADMIN
+}
+
+enum providers_kyc_status {
+  PENDING
+  VERIFIED
+  REJECTED
 }

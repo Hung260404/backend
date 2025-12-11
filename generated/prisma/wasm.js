@@ -150,9 +150,100 @@ exports.Prisma.THOIKHOABIEUScalarFieldEnum = {
   NgayKetThuc: 'NgayKetThuc'
 };
 
+exports.Prisma.CategoriesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  icon_url: 'icon_url'
+};
+
+exports.Prisma.ConversationsScalarFieldEnum = {
+  id: 'id',
+  customer_id: 'customer_id',
+  provider_id: 'provider_id',
+  last_message: 'last_message',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.MessagesScalarFieldEnum = {
+  id: 'id',
+  conversation_id: 'conversation_id',
+  sender_id: 'sender_id',
+  content: 'content',
+  is_read: 'is_read'
+};
+
+exports.Prisma.NotificationsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  title: 'title',
+  message: 'message',
+  type: 'type',
+  is_read: 'is_read'
+};
+
+exports.Prisma.Payout_requestsScalarFieldEnum = {
+  id: 'id',
+  provider_id: 'provider_id',
+  amount: 'amount',
+  bank_info: 'bank_info',
+  status: 'status'
+};
+
+exports.Prisma.ProvidersScalarFieldEnum = {
+  user_id: 'user_id',
+  business_name: 'business_name',
+  description: 'description',
+  address: 'address',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  kyc_status: 'kyc_status',
+  trust_score: 'trust_score'
+};
+
+exports.Prisma.SchedulesScalarFieldEnum = {
+  id: 'id',
+  provider_id: 'provider_id',
+  day_of_week: 'day_of_week',
+  start_time: 'start_time',
+  end_time: 'end_time',
+  is_day_off: 'is_day_off'
+};
+
+exports.Prisma.UsersScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  full_name: 'full_name',
+  phone: 'phone',
+  avatar_url: 'avatar_url',
+  role: 'role',
+  is_active: 'is_active',
+  created_at: 'created_at'
+};
+
+exports.Prisma.VouchersScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  discount_type: 'discount_type',
+  value: 'value',
+  min_order_price: 'min_order_price',
+  owner_id: 'owner_id'
+};
+
+exports.Prisma.WalletsScalarFieldEnum = {
+  provider_id: 'provider_id',
+  balance: 'balance',
+  holding_balance: 'holding_balance'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.NullsOrder = {
@@ -205,6 +296,53 @@ exports.Prisma.THOIKHOABIEUOrderByRelevanceFieldEnum = {
   MaGV: 'MaGV',
   MaPhong: 'MaPhong'
 };
+
+exports.Prisma.categoriesOrderByRelevanceFieldEnum = {
+  name: 'name',
+  icon_url: 'icon_url'
+};
+
+exports.Prisma.conversationsOrderByRelevanceFieldEnum = {
+  last_message: 'last_message'
+};
+
+exports.Prisma.messagesOrderByRelevanceFieldEnum = {
+  content: 'content'
+};
+
+exports.Prisma.notificationsOrderByRelevanceFieldEnum = {
+  title: 'title',
+  message: 'message'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
+exports.Prisma.providersOrderByRelevanceFieldEnum = {
+  business_name: 'business_name',
+  description: 'description',
+  address: 'address'
+};
+
+exports.Prisma.usersOrderByRelevanceFieldEnum = {
+  email: 'email',
+  password: 'password',
+  full_name: 'full_name',
+  phone: 'phone',
+  avatar_url: 'avatar_url'
+};
+
+exports.Prisma.vouchersOrderByRelevanceFieldEnum = {
+  code: 'code'
+};
 exports.TAIKHOAN_LoaiTaiKhoan = exports.$Enums.TAIKHOAN_LoaiTaiKhoan = {
   SinhVien: 'SinhVien',
   GiangVien: 'GiangVien',
@@ -216,6 +354,35 @@ exports.SINHVIEN_GioiTinh = exports.$Enums.SINHVIEN_GioiTinh = {
   N_: 'N_'
 };
 
+exports.vouchers_discount_type = exports.$Enums.vouchers_discount_type = {
+  PERCENT: 'PERCENT',
+  FIXED: 'FIXED'
+};
+
+exports.payout_requests_status = exports.$Enums.payout_requests_status = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
+exports.notifications_type = exports.$Enums.notifications_type = {
+  BOOKING: 'BOOKING',
+  SYSTEM: 'SYSTEM',
+  PROMOTION: 'PROMOTION'
+};
+
+exports.users_role = exports.$Enums.users_role = {
+  CUSTOMER: 'CUSTOMER',
+  PROVIDER: 'PROVIDER',
+  ADMIN: 'ADMIN'
+};
+
+exports.providers_kyc_status = exports.$Enums.providers_kyc_status = {
+  PENDING: 'PENDING',
+  VERIFIED: 'VERIFIED',
+  REJECTED: 'REJECTED'
+};
+
 exports.Prisma.ModelName = {
   GIANGVIEN: 'GIANGVIEN',
   LOP: 'LOP',
@@ -223,7 +390,17 @@ exports.Prisma.ModelName = {
   PHONG: 'PHONG',
   SINHVIEN: 'SINHVIEN',
   TAIKHOAN: 'TAIKHOAN',
-  THOIKHOABIEU: 'THOIKHOABIEU'
+  THOIKHOABIEU: 'THOIKHOABIEU',
+  categories: 'categories',
+  conversations: 'conversations',
+  messages: 'messages',
+  notifications: 'notifications',
+  payout_requests: 'payout_requests',
+  providers: 'providers',
+  schedules: 'schedules',
+  users: 'users',
+  vouchers: 'vouchers',
+  wallets: 'wallets'
 };
 /**
  * Create the Client
@@ -236,7 +413,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "E:\\thoiKhoaBieu\\generated\\prisma",
+      "value": "E:\\BSSapp\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -250,7 +427,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "E:\\thoiKhoaBieu\\prisma\\schema.prisma",
+    "sourceFilePath": "E:\\BSSapp\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -273,13 +450,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel GIANGVIEN {\n  MaGV         String         @id @db.VarChar(10)\n  HoTen        String         @db.VarChar(100)\n  TrinhDo      String?        @db.VarChar(50)\n  BoMon        String?        @db.VarChar(100)\n  TAIKHOAN     TAIKHOAN[]\n  THOIKHOABIEU THOIKHOABIEU[]\n}\n\nmodel LOP {\n  MaLop        String         @id @db.VarChar(10)\n  TenLop       String         @db.VarChar(100)\n  KhoaHoc      String?        @db.VarChar(20)\n  NganhHoc     String?        @db.VarChar(100)\n  SINHVIEN     SINHVIEN[]\n  THOIKHOABIEU THOIKHOABIEU[]\n}\n\nmodel MONHOC {\n  MaMH         String         @id @db.VarChar(10)\n  TenMH        String         @db.VarChar(100)\n  SoTinChi     Int?\n  SoTiet       Int?\n  THOIKHOABIEU THOIKHOABIEU[]\n}\n\nmodel PHONG {\n  MaPhong      String         @id @db.VarChar(10)\n  TenPhong     String?        @db.VarChar(50)\n  SucChua      Int?\n  LoaiPhong    String?        @db.VarChar(50)\n  THOIKHOABIEU THOIKHOABIEU[]\n}\n\nmodel SINHVIEN {\n  MaSV     String             @id @db.VarChar(10)\n  HoTen    String             @db.VarChar(100)\n  NgaySinh DateTime?          @db.Date\n  GioiTinh SINHVIEN_GioiTinh?\n  DiaChi   String?            @db.VarChar(200)\n  MaLop    String?            @db.VarChar(10)\n  LOP      LOP?               @relation(fields: [MaLop], references: [MaLop], onDelete: NoAction, onUpdate: NoAction, map: \"SINHVIEN_ibfk_1\")\n  TAIKHOAN TAIKHOAN[]\n\n  @@index([MaLop], map: \"MaLop\")\n}\n\nmodel TAIKHOAN {\n  TenDangNhap  String                 @id @db.VarChar(50)\n  MatKhau      String                 @db.VarChar(255)\n  LoaiTaiKhoan TAIKHOAN_LoaiTaiKhoan? @default(SinhVien)\n  MaSV         String?                @db.VarChar(10)\n  MaGV         String?                @db.VarChar(10)\n  SINHVIEN     SINHVIEN?              @relation(fields: [MaSV], references: [MaSV], onDelete: NoAction, onUpdate: NoAction, map: \"TAIKHOAN_ibfk_1\")\n  GIANGVIEN    GIANGVIEN?             @relation(fields: [MaGV], references: [MaGV], onDelete: NoAction, onUpdate: NoAction, map: \"TAIKHOAN_ibfk_2\")\n\n  @@index([MaGV], map: \"MaGV\")\n  @@index([MaSV], map: \"MaSV\")\n}\n\nmodel THOIKHOABIEU {\n  MaTKB       Int        @id @default(autoincrement())\n  MaLop       String?    @db.VarChar(10)\n  MaMH        String?    @db.VarChar(10)\n  MaGV        String?    @db.VarChar(10)\n  MaPhong     String?    @db.VarChar(10)\n  Thu         Int?\n  TietBatDau  Int?\n  SoTiet      Int?\n  NgayBatDau  DateTime?  @db.Date\n  NgayKetThuc DateTime?  @db.Date\n  LOP         LOP?       @relation(fields: [MaLop], references: [MaLop], onDelete: NoAction, onUpdate: NoAction, map: \"THOIKHOABIEU_ibfk_1\")\n  MONHOC      MONHOC?    @relation(fields: [MaMH], references: [MaMH], onDelete: NoAction, onUpdate: NoAction, map: \"THOIKHOABIEU_ibfk_2\")\n  GIANGVIEN   GIANGVIEN? @relation(fields: [MaGV], references: [MaGV], onDelete: NoAction, onUpdate: NoAction, map: \"THOIKHOABIEU_ibfk_3\")\n  PHONG       PHONG?     @relation(fields: [MaPhong], references: [MaPhong], onDelete: NoAction, onUpdate: NoAction, map: \"THOIKHOABIEU_ibfk_4\")\n\n  @@index([MaGV], map: \"MaGV\")\n  @@index([MaLop], map: \"MaLop\")\n  @@index([MaMH], map: \"MaMH\")\n  @@index([MaPhong], map: \"MaPhong\")\n}\n\nenum TAIKHOAN_LoaiTaiKhoan {\n  SinhVien\n  GiangVien\n  Admin\n}\n\nenum SINHVIEN_GioiTinh {\n  Nam\n  N_  @map(\"Nữ\")\n}\n",
-  "inlineSchemaHash": "28a91c9a7f11a50b0e0500340a3176f8831e349b839de6527c3d1461cd57563f",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel GIANGVIEN {\n  MaGV         String         @id @db.VarChar(10)\n  HoTen        String         @db.VarChar(100)\n  TrinhDo      String?        @db.VarChar(50)\n  BoMon        String?        @db.VarChar(100)\n  TAIKHOAN     TAIKHOAN[]\n  THOIKHOABIEU THOIKHOABIEU[]\n}\n\nmodel LOP {\n  MaLop        String         @id @db.VarChar(10)\n  TenLop       String         @db.VarChar(100)\n  KhoaHoc      String?        @db.VarChar(20)\n  NganhHoc     String?        @db.VarChar(100)\n  SINHVIEN     SINHVIEN[]\n  THOIKHOABIEU THOIKHOABIEU[]\n}\n\nmodel MONHOC {\n  MaMH         String         @id @db.VarChar(10)\n  TenMH        String         @db.VarChar(100)\n  SoTinChi     Int?\n  SoTiet       Int?\n  THOIKHOABIEU THOIKHOABIEU[]\n}\n\nmodel PHONG {\n  MaPhong      String         @id @db.VarChar(10)\n  TenPhong     String?        @db.VarChar(50)\n  SucChua      Int?\n  LoaiPhong    String?        @db.VarChar(50)\n  THOIKHOABIEU THOIKHOABIEU[]\n}\n\nmodel SINHVIEN {\n  MaSV     String             @id @db.VarChar(10)\n  HoTen    String             @db.VarChar(100)\n  NgaySinh DateTime?          @db.Date\n  GioiTinh SINHVIEN_GioiTinh?\n  DiaChi   String?            @db.VarChar(200)\n  MaLop    String?            @db.VarChar(10)\n  LOP      LOP?               @relation(fields: [MaLop], references: [MaLop], onDelete: NoAction, onUpdate: NoAction, map: \"SINHVIEN_ibfk_1\")\n  TAIKHOAN TAIKHOAN[]\n\n  @@index([MaLop], map: \"MaLop\")\n}\n\nmodel TAIKHOAN {\n  TenDangNhap  String                 @id @db.VarChar(50)\n  MatKhau      String                 @db.VarChar(255)\n  LoaiTaiKhoan TAIKHOAN_LoaiTaiKhoan? @default(SinhVien)\n  MaSV         String?                @db.VarChar(10)\n  MaGV         String?                @db.VarChar(10)\n  SINHVIEN     SINHVIEN?              @relation(fields: [MaSV], references: [MaSV], onDelete: NoAction, onUpdate: NoAction, map: \"TAIKHOAN_ibfk_1\")\n  GIANGVIEN    GIANGVIEN?             @relation(fields: [MaGV], references: [MaGV], onDelete: NoAction, onUpdate: NoAction, map: \"TAIKHOAN_ibfk_2\")\n\n  @@index([MaGV], map: \"MaGV\")\n  @@index([MaSV], map: \"MaSV\")\n}\n\nmodel THOIKHOABIEU {\n  MaTKB       Int        @id @default(autoincrement())\n  MaLop       String?    @db.VarChar(10)\n  MaMH        String?    @db.VarChar(10)\n  MaGV        String?    @db.VarChar(10)\n  MaPhong     String?    @db.VarChar(10)\n  Thu         Int?\n  TietBatDau  Int?\n  SoTiet      Int?\n  NgayBatDau  DateTime?  @db.Date\n  NgayKetThuc DateTime?  @db.Date\n  LOP         LOP?       @relation(fields: [MaLop], references: [MaLop], onDelete: NoAction, onUpdate: NoAction, map: \"THOIKHOABIEU_ibfk_1\")\n  MONHOC      MONHOC?    @relation(fields: [MaMH], references: [MaMH], onDelete: NoAction, onUpdate: NoAction, map: \"THOIKHOABIEU_ibfk_2\")\n  GIANGVIEN   GIANGVIEN? @relation(fields: [MaGV], references: [MaGV], onDelete: NoAction, onUpdate: NoAction, map: \"THOIKHOABIEU_ibfk_3\")\n  PHONG       PHONG?     @relation(fields: [MaPhong], references: [MaPhong], onDelete: NoAction, onUpdate: NoAction, map: \"THOIKHOABIEU_ibfk_4\")\n\n  @@index([MaGV], map: \"MaGV\")\n  @@index([MaLop], map: \"MaLop\")\n  @@index([MaMH], map: \"MaMH\")\n  @@index([MaPhong], map: \"MaPhong\")\n}\n\nmodel categories {\n  id       Int     @id @default(autoincrement())\n  name     String  @db.VarChar(255)\n  icon_url String? @db.VarChar(500)\n}\n\nmodel conversations {\n  id           Int        @id @default(autoincrement())\n  customer_id  Int\n  provider_id  Int\n  last_message String?    @db.Text\n  updated_at   DateTime?  @default(now()) @db.Timestamp(0)\n  users        users      @relation(fields: [customer_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: \"conversations_ibfk_1\")\n  providers    providers  @relation(fields: [provider_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: \"conversations_ibfk_2\")\n  messages     messages[]\n\n  @@index([customer_id], map: \"customer_id\")\n  @@index([provider_id], map: \"provider_id\")\n}\n\nmodel messages {\n  id              Int           @id @default(autoincrement())\n  conversation_id Int\n  sender_id       Int\n  content         String?       @db.Text\n  is_read         Boolean?      @default(false)\n  conversations   conversations @relation(fields: [conversation_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: \"messages_ibfk_1\")\n  users           users         @relation(fields: [sender_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: \"messages_ibfk_2\")\n\n  @@index([conversation_id], map: \"conversation_id\")\n  @@index([sender_id], map: \"sender_id\")\n}\n\nmodel notifications {\n  id      Int                 @id @default(autoincrement())\n  user_id Int\n  title   String?             @db.VarChar(255)\n  message String?             @db.Text\n  type    notifications_type? @default(SYSTEM)\n  is_read Boolean?            @default(false)\n  users   users               @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: \"notifications_ibfk_1\")\n\n  @@index([user_id], map: \"user_id\")\n}\n\nmodel payout_requests {\n  id          Int                     @id @default(autoincrement())\n  provider_id Int\n  amount      Decimal                 @db.Decimal(12, 2)\n  bank_info   Json?\n  status      payout_requests_status? @default(PENDING)\n  providers   providers               @relation(fields: [provider_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: \"payout_requests_ibfk_1\")\n\n  @@index([provider_id], map: \"provider_id\")\n}\n\nmodel providers {\n  user_id         Int                   @id\n  business_name   String?               @db.VarChar(255)\n  description     String?               @db.Text\n  address         String?               @db.VarChar(500)\n  latitude        Decimal?              @db.Decimal(10, 7)\n  longitude       Decimal?              @db.Decimal(10, 7)\n  kyc_status      providers_kyc_status? @default(PENDING)\n  trust_score     Decimal?              @default(0.00) @db.Decimal(3, 2)\n  conversations   conversations[]\n  payout_requests payout_requests[]\n  users           users                 @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: \"providers_ibfk_1\")\n  schedules       schedules[]\n  wallets         wallets?\n}\n\nmodel schedules {\n  id          Int       @id @default(autoincrement())\n  provider_id Int\n  day_of_week Int       @db.TinyInt\n  start_time  DateTime  @db.Time(0)\n  end_time    DateTime  @db.Time(0)\n  is_day_off  Boolean?  @default(false)\n  providers   providers @relation(fields: [provider_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: \"schedules_ibfk_1\")\n\n  @@index([provider_id], map: \"provider_id\")\n}\n\nmodel users {\n  id            Int             @id @default(autoincrement())\n  email         String          @unique(map: \"email\") @db.VarChar(255)\n  password      String          @db.VarChar(255)\n  full_name     String          @db.VarChar(255)\n  phone         String?         @db.VarChar(20)\n  avatar_url    String?         @db.VarChar(500)\n  role          users_role?     @default(CUSTOMER)\n  is_active     Boolean?        @default(true)\n  created_at    DateTime?       @default(now()) @db.Timestamp(0)\n  conversations conversations[]\n  messages      messages[]\n  notifications notifications[]\n  providers     providers?\n}\n\nmodel vouchers {\n  id              Int                    @id @default(autoincrement())\n  code            String                 @unique(map: \"code\") @db.VarChar(50)\n  discount_type   vouchers_discount_type\n  value           Decimal                @db.Decimal(12, 2)\n  min_order_price Decimal?               @default(0.00) @db.Decimal(12, 2)\n  owner_id        Int?\n}\n\nmodel wallets {\n  provider_id     Int       @id\n  balance         Decimal?  @default(0.00) @db.Decimal(12, 2)\n  holding_balance Decimal?  @default(0.00) @db.Decimal(12, 2)\n  providers       providers @relation(fields: [provider_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: \"wallets_ibfk_1\")\n}\n\nenum TAIKHOAN_LoaiTaiKhoan {\n  SinhVien\n  GiangVien\n  Admin\n}\n\nenum SINHVIEN_GioiTinh {\n  Nam\n  N_  @map(\"Nữ\")\n}\n\nenum vouchers_discount_type {\n  PERCENT\n  FIXED\n}\n\nenum payout_requests_status {\n  PENDING\n  APPROVED\n  REJECTED\n}\n\nenum notifications_type {\n  BOOKING\n  SYSTEM\n  PROMOTION\n}\n\nenum users_role {\n  CUSTOMER\n  PROVIDER\n  ADMIN\n}\n\nenum providers_kyc_status {\n  PENDING\n  VERIFIED\n  REJECTED\n}\n",
+  "inlineSchemaHash": "aacd1ebbd82605f012c4c0b7e5ca95f39dfe6e55228b68d9a2a03b5c863781b0",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"GIANGVIEN\":{\"fields\":[{\"name\":\"MaGV\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"HoTen\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"TrinhDo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"BoMon\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"TAIKHOAN\",\"kind\":\"object\",\"type\":\"TAIKHOAN\",\"relationName\":\"GIANGVIENToTAIKHOAN\"},{\"name\":\"THOIKHOABIEU\",\"kind\":\"object\",\"type\":\"THOIKHOABIEU\",\"relationName\":\"GIANGVIENToTHOIKHOABIEU\"}],\"dbName\":null},\"LOP\":{\"fields\":[{\"name\":\"MaLop\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"TenLop\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"KhoaHoc\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"NganhHoc\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"SINHVIEN\",\"kind\":\"object\",\"type\":\"SINHVIEN\",\"relationName\":\"LOPToSINHVIEN\"},{\"name\":\"THOIKHOABIEU\",\"kind\":\"object\",\"type\":\"THOIKHOABIEU\",\"relationName\":\"LOPToTHOIKHOABIEU\"}],\"dbName\":null},\"MONHOC\":{\"fields\":[{\"name\":\"MaMH\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"TenMH\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"SoTinChi\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"SoTiet\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"THOIKHOABIEU\",\"kind\":\"object\",\"type\":\"THOIKHOABIEU\",\"relationName\":\"MONHOCToTHOIKHOABIEU\"}],\"dbName\":null},\"PHONG\":{\"fields\":[{\"name\":\"MaPhong\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"TenPhong\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"SucChua\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"LoaiPhong\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"THOIKHOABIEU\",\"kind\":\"object\",\"type\":\"THOIKHOABIEU\",\"relationName\":\"PHONGToTHOIKHOABIEU\"}],\"dbName\":null},\"SINHVIEN\":{\"fields\":[{\"name\":\"MaSV\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"HoTen\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"NgaySinh\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"GioiTinh\",\"kind\":\"enum\",\"type\":\"SINHVIEN_GioiTinh\"},{\"name\":\"DiaChi\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"MaLop\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"LOP\",\"kind\":\"object\",\"type\":\"LOP\",\"relationName\":\"LOPToSINHVIEN\"},{\"name\":\"TAIKHOAN\",\"kind\":\"object\",\"type\":\"TAIKHOAN\",\"relationName\":\"SINHVIENToTAIKHOAN\"}],\"dbName\":null},\"TAIKHOAN\":{\"fields\":[{\"name\":\"TenDangNhap\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"MatKhau\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"LoaiTaiKhoan\",\"kind\":\"enum\",\"type\":\"TAIKHOAN_LoaiTaiKhoan\"},{\"name\":\"MaSV\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"MaGV\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"SINHVIEN\",\"kind\":\"object\",\"type\":\"SINHVIEN\",\"relationName\":\"SINHVIENToTAIKHOAN\"},{\"name\":\"GIANGVIEN\",\"kind\":\"object\",\"type\":\"GIANGVIEN\",\"relationName\":\"GIANGVIENToTAIKHOAN\"}],\"dbName\":null},\"THOIKHOABIEU\":{\"fields\":[{\"name\":\"MaTKB\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"MaLop\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"MaMH\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"MaGV\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"MaPhong\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"Thu\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"TietBatDau\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"SoTiet\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"NgayBatDau\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"NgayKetThuc\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"LOP\",\"kind\":\"object\",\"type\":\"LOP\",\"relationName\":\"LOPToTHOIKHOABIEU\"},{\"name\":\"MONHOC\",\"kind\":\"object\",\"type\":\"MONHOC\",\"relationName\":\"MONHOCToTHOIKHOABIEU\"},{\"name\":\"GIANGVIEN\",\"kind\":\"object\",\"type\":\"GIANGVIEN\",\"relationName\":\"GIANGVIENToTHOIKHOABIEU\"},{\"name\":\"PHONG\",\"kind\":\"object\",\"type\":\"PHONG\",\"relationName\":\"PHONGToTHOIKHOABIEU\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"GIANGVIEN\":{\"fields\":[{\"name\":\"MaGV\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"HoTen\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"TrinhDo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"BoMon\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"TAIKHOAN\",\"kind\":\"object\",\"type\":\"TAIKHOAN\",\"relationName\":\"GIANGVIENToTAIKHOAN\"},{\"name\":\"THOIKHOABIEU\",\"kind\":\"object\",\"type\":\"THOIKHOABIEU\",\"relationName\":\"GIANGVIENToTHOIKHOABIEU\"}],\"dbName\":null},\"LOP\":{\"fields\":[{\"name\":\"MaLop\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"TenLop\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"KhoaHoc\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"NganhHoc\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"SINHVIEN\",\"kind\":\"object\",\"type\":\"SINHVIEN\",\"relationName\":\"LOPToSINHVIEN\"},{\"name\":\"THOIKHOABIEU\",\"kind\":\"object\",\"type\":\"THOIKHOABIEU\",\"relationName\":\"LOPToTHOIKHOABIEU\"}],\"dbName\":null},\"MONHOC\":{\"fields\":[{\"name\":\"MaMH\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"TenMH\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"SoTinChi\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"SoTiet\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"THOIKHOABIEU\",\"kind\":\"object\",\"type\":\"THOIKHOABIEU\",\"relationName\":\"MONHOCToTHOIKHOABIEU\"}],\"dbName\":null},\"PHONG\":{\"fields\":[{\"name\":\"MaPhong\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"TenPhong\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"SucChua\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"LoaiPhong\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"THOIKHOABIEU\",\"kind\":\"object\",\"type\":\"THOIKHOABIEU\",\"relationName\":\"PHONGToTHOIKHOABIEU\"}],\"dbName\":null},\"SINHVIEN\":{\"fields\":[{\"name\":\"MaSV\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"HoTen\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"NgaySinh\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"GioiTinh\",\"kind\":\"enum\",\"type\":\"SINHVIEN_GioiTinh\"},{\"name\":\"DiaChi\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"MaLop\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"LOP\",\"kind\":\"object\",\"type\":\"LOP\",\"relationName\":\"LOPToSINHVIEN\"},{\"name\":\"TAIKHOAN\",\"kind\":\"object\",\"type\":\"TAIKHOAN\",\"relationName\":\"SINHVIENToTAIKHOAN\"}],\"dbName\":null},\"TAIKHOAN\":{\"fields\":[{\"name\":\"TenDangNhap\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"MatKhau\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"LoaiTaiKhoan\",\"kind\":\"enum\",\"type\":\"TAIKHOAN_LoaiTaiKhoan\"},{\"name\":\"MaSV\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"MaGV\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"SINHVIEN\",\"kind\":\"object\",\"type\":\"SINHVIEN\",\"relationName\":\"SINHVIENToTAIKHOAN\"},{\"name\":\"GIANGVIEN\",\"kind\":\"object\",\"type\":\"GIANGVIEN\",\"relationName\":\"GIANGVIENToTAIKHOAN\"}],\"dbName\":null},\"THOIKHOABIEU\":{\"fields\":[{\"name\":\"MaTKB\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"MaLop\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"MaMH\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"MaGV\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"MaPhong\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"Thu\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"TietBatDau\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"SoTiet\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"NgayBatDau\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"NgayKetThuc\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"LOP\",\"kind\":\"object\",\"type\":\"LOP\",\"relationName\":\"LOPToTHOIKHOABIEU\"},{\"name\":\"MONHOC\",\"kind\":\"object\",\"type\":\"MONHOC\",\"relationName\":\"MONHOCToTHOIKHOABIEU\"},{\"name\":\"GIANGVIEN\",\"kind\":\"object\",\"type\":\"GIANGVIEN\",\"relationName\":\"GIANGVIENToTHOIKHOABIEU\"},{\"name\":\"PHONG\",\"kind\":\"object\",\"type\":\"PHONG\",\"relationName\":\"PHONGToTHOIKHOABIEU\"}],\"dbName\":null},\"categories\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"icon_url\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"conversations\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"customer_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"provider_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"last_message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"conversationsTousers\"},{\"name\":\"providers\",\"kind\":\"object\",\"type\":\"providers\",\"relationName\":\"conversationsToproviders\"},{\"name\":\"messages\",\"kind\":\"object\",\"type\":\"messages\",\"relationName\":\"conversationsTomessages\"}],\"dbName\":null},\"messages\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"conversation_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"sender_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"is_read\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"conversations\",\"kind\":\"object\",\"type\":\"conversations\",\"relationName\":\"conversationsTomessages\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"messagesTousers\"}],\"dbName\":null},\"notifications\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"notifications_type\"},{\"name\":\"is_read\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"notificationsTousers\"}],\"dbName\":null},\"payout_requests\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"provider_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"amount\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"bank_info\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"payout_requests_status\"},{\"name\":\"providers\",\"kind\":\"object\",\"type\":\"providers\",\"relationName\":\"payout_requestsToproviders\"}],\"dbName\":null},\"providers\":{\"fields\":[{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"business_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"latitude\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"longitude\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"kyc_status\",\"kind\":\"enum\",\"type\":\"providers_kyc_status\"},{\"name\":\"trust_score\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"conversations\",\"kind\":\"object\",\"type\":\"conversations\",\"relationName\":\"conversationsToproviders\"},{\"name\":\"payout_requests\",\"kind\":\"object\",\"type\":\"payout_requests\",\"relationName\":\"payout_requestsToproviders\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"providersTousers\"},{\"name\":\"schedules\",\"kind\":\"object\",\"type\":\"schedules\",\"relationName\":\"providersToschedules\"},{\"name\":\"wallets\",\"kind\":\"object\",\"type\":\"wallets\",\"relationName\":\"providersTowallets\"}],\"dbName\":null},\"schedules\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"provider_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"day_of_week\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"start_time\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"end_time\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"is_day_off\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"providers\",\"kind\":\"object\",\"type\":\"providers\",\"relationName\":\"providersToschedules\"}],\"dbName\":null},\"users\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"full_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"avatar_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"users_role\"},{\"name\":\"is_active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"conversations\",\"kind\":\"object\",\"type\":\"conversations\",\"relationName\":\"conversationsTousers\"},{\"name\":\"messages\",\"kind\":\"object\",\"type\":\"messages\",\"relationName\":\"messagesTousers\"},{\"name\":\"notifications\",\"kind\":\"object\",\"type\":\"notifications\",\"relationName\":\"notificationsTousers\"},{\"name\":\"providers\",\"kind\":\"object\",\"type\":\"providers\",\"relationName\":\"providersTousers\"}],\"dbName\":null},\"vouchers\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"discount_type\",\"kind\":\"enum\",\"type\":\"vouchers_discount_type\"},{\"name\":\"value\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"min_order_price\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"owner_id\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null},\"wallets\":{\"fields\":[{\"name\":\"provider_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"balance\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"holding_balance\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"providers\",\"kind\":\"object\",\"type\":\"providers\",\"relationName\":\"providersTowallets\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

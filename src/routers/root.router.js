@@ -1,20 +1,11 @@
-import { Router } from "express";
+// src/routers/root.router.js
+import express from "express";
 import authRouter from "./auth.router.js";
-import giangvienRouter from "./giangvien.router.js";
-import lopRouter from "./lop.router.js";
-import monhocRouter from "./monhoc.router.js";
-import phongRouter from "./phong.router.js";
-import sinhvienRouter from "./sinhvien.router.js";
-import thoikhoabieuRouter from "./thoikhoabieu.router.js";
+import userRouter from "./user.router.js";
 
-const router = Router();
+const router = express.Router();
 
 router.use("/auth", authRouter);
-router.use("/giangvien", giangvienRouter);
-router.use("/sinhvien", sinhvienRouter);
-router.use("/lop", lopRouter);
-router.use("/monhoc", monhocRouter);
-router.use("/phong", phongRouter);
-router.use("/thoikhoabieu", thoikhoabieuRouter);
+router.use("/users", userRouter);
 
 export default router;
